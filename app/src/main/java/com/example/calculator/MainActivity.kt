@@ -1,6 +1,8 @@
 package com.example.calculator
 
 import android.os.Bundle
+import android.widget.Button
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -16,5 +18,24 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        val zeroButton = findViewById<Button>(R.id.zero_button)
+        val oneButton = findViewById<Button>(R.id.one_number)
+        val twoButton = findViewById<Button>(R.id.two_number)
+        val threeButton = findViewById<Button>(R.id.three_number)
+        val fourButton = findViewById<Button>(R.id.four_number)
+        val fiveButton = findViewById<Button>(R.id.five_number)
+        val sixButton = findViewById<Button>(R.id.six_number)
+        val sevenButton = findViewById<Button>(R.id.seven_number)
+        val eightButton = findViewById<Button>(R.id.eight_number)
+        val nineButton = findViewById<Button>(R.id.nine_number)
+        val pointButton = findViewById<Button>(R.id.point_button)
+
+        val equalButton = findViewById<Button>(R.id.equal_button)
+        val minusButton = findViewById<Button>(R.id.minus_button)
+        val plusButton = findViewById<Button>(R.id.plus_button)
+        val multiplyButton = findViewById<Button>(R.id.multiply_button)
+
+        val resultTextView = findViewById<TextView>(R.id.result_textView)
     }
 }
