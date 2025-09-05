@@ -104,7 +104,7 @@ class MainActivity : AppCompatActivity() {
             resultTextView.text = numberStringBuilder
         }
         clearButton.setOnClickListener {
-            resultTextView.text=""
+            resultTextView.text="0"
             numberStringBuilder.clear()
         }
         equalButton.setOnClickListener {
