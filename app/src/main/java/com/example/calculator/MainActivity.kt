@@ -1,6 +1,7 @@
 package com.example.calculator
 
 import android.os.Bundle
+import android.view.inputmethod.InputBinding
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
@@ -8,10 +9,14 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.calculator.databinding.ActivityMainBinding
 import com.ezylang.evalex.Expression
 
 class MainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
+
+    private lateinit var binding: ActivityMainBinding
+
+    override fun onCreate(savedInstanceState: Bundle?) = with(binding) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
@@ -21,63 +26,48 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        val zeroButton = findViewById<Button>(R.id.zero_button)
-        val oneButton = findViewById<Button>(R.id.one_number)
-        val twoButton = findViewById<Button>(R.id.two_number)
-        val threeButton = findViewById<Button>(R.id.three_number)
-        val fourButton = findViewById<Button>(R.id.four_number)
-        val fiveButton = findViewById<Button>(R.id.five_number)
-        val sixButton = findViewById<Button>(R.id.six_number)
-        val sevenButton = findViewById<Button>(R.id.seven_number)
-        val eightButton = findViewById<Button>(R.id.eight_number)
-        val nineButton = findViewById<Button>(R.id.nine_number)
-        val pointButton = findViewById<Button>(R.id.point_button)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
-        val equalButton = findViewById<Button>(R.id.equal_button)
-        val minusButton = findViewById<Button>(R.id.minus_button)
-        val plusButton = findViewById<Button>(R.id.plus_button)
-        val multiplyButton = findViewById<Button>(R.id.multiply_button)
-        val divideButton = findViewById<Button>(R.id.divide_button)
+        setContentView(R.layout.activity_main)
 
         val resultTextView = findViewById<TextView>(R.id.result_textView)
-        val clearButton = findViewById<Button>(R.id.clear_button)
-        val resetButton = findViewById<Button>(R.id.reset_button)
-
         val numberStringBuilder = StringBuilder()
 
-        oneButton.setOnClickListener {
+        oneNumber.setOnClickListener {
             numberStringBuilder.append(1)
             resultTextView.text = numberStringBuilder
         }
-        twoButton.setOnClickListener {
+        twoNumber.setOnClickListener {
             numberStringBuilder.append(2)
             resultTextView.text = numberStringBuilder
         }
-        threeButton.setOnClickListener {
+        binding.threeNumber.setOnClickListener {
             numberStringBuilder.append(3)
             resultTextView.text = numberStringBuilder
         }
-        fourButton.setOnClickListener {
+        fourNumber.setOnClickListener {
             numberStringBuilder.append(4)
             resultTextView.text = numberStringBuilder
         }
-        fiveButton.setOnClickListener {
+        fiveNumber.setOnClickListener {
             numberStringBuilder.append(5)
             resultTextView.text = numberStringBuilder
         }
-        sixButton.setOnClickListener {
+        sixNumber.setOnClickListener {
             numberStringBuilder.append(6)
             resultTextView.text = numberStringBuilder
         }
-        sevenButton.setOnClickListener {
+        sevenNumber.setOnClickListener {
             numberStringBuilder.append(7)
             resultTextView.text = numberStringBuilder
         }
-        eightButton.setOnClickListener {
+        eightNumber.setOnClickListener {
             numberStringBuilder.append(8)
             resultTextView.text = numberStringBuilder
         }
-        nineButton.setOnClickListener {
+        nineNumber.setOnClickListener {
             numberStringBuilder.append(9)
             resultTextView.text = numberStringBuilder
         }
