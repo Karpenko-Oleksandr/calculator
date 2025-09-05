@@ -41,6 +41,7 @@ class MainActivity : AppCompatActivity() {
 
         val resultTextView = findViewById<TextView>(R.id.result_textView)
         val clearButton = findViewById<Button>(R.id.clear_button)
+        val resetButton = findViewById<Button>(R.id.reset_button)
 
         val numberStringBuilder = StringBuilder()
 
@@ -124,6 +125,10 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this@MainActivity, "Exception: $t", Toast.LENGTH_LONG)
                     .show()
             }
+        }
+        resetButton.setOnClickListener {
+            numberStringBuilder.deleteCharAt(numberStringBuilder.length - 1)
+            resultTextView.text = numberStringBuilder
         }
     }
 }
