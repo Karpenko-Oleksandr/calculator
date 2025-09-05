@@ -36,8 +36,10 @@ class MainActivity : AppCompatActivity() {
         val minusButton = findViewById<Button>(R.id.minus_button)
         val plusButton = findViewById<Button>(R.id.plus_button)
         val multiplyButton = findViewById<Button>(R.id.multiply_button)
+        val divideButton = findViewById<Button>(R.id.divide_button)
 
         val resultTextView = findViewById<TextView>(R.id.result_textView)
+        val clearButton = findViewById<Button>(R.id.clear_button)
 
         val numberStringBuilder = StringBuilder()
 
@@ -81,10 +83,6 @@ class MainActivity : AppCompatActivity() {
             numberStringBuilder.append(0)
             resultTextView.text = numberStringBuilder
         }
-        equalButton.setOnClickListener {
-            numberStringBuilder.append("=")
-            resultTextView.text = numberStringBuilder
-        }
         plusButton.setOnClickListener {
             numberStringBuilder.append("+")
             resultTextView.text = numberStringBuilder
@@ -97,14 +95,27 @@ class MainActivity : AppCompatActivity() {
             numberStringBuilder.append("*")
             resultTextView.text = numberStringBuilder
         }
+        divideButton.setOnClickListener {
+            numberStringBuilder.append("/")
+            resultTextView.text = numberStringBuilder
+        }
         pointButton.setOnClickListener {
             numberStringBuilder.append(".")
             resultTextView.text = numberStringBuilder
         }
+        clearButton.setOnClickListener {
+            resultTextView.text=""
+            numberStringBuilder.clear()
+        }
+        equalButton.setOnClickListener {
+            val stringExpression = numberStringBuilder.toString()
+            val expression = Expression(stringExpression)
+            val expressionResult = expression.evaluate().numberValue
 
-        val expression = Expression("1+2")
-        val expressionResult = expression.evaluate().numberValue
+            resultTextView.text = expressionResult.toString()
 
-        resultTextView.text = expressionResult.toString()
+            numberStringBuilder.clear()
+            numberStringBuilder.append(expressionResult.toString())
+        }
     }
 }
