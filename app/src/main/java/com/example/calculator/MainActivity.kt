@@ -3,6 +3,7 @@ package com.example.calculator
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -108,14 +109,21 @@ class MainActivity : AppCompatActivity() {
             numberStringBuilder.clear()
         }
         equalButton.setOnClickListener {
-            val stringExpression = numberStringBuilder.toString()
-            val expression = Expression(stringExpression)
-            val expressionResult = expression.evaluate().numberValue
 
-            resultTextView.text = expressionResult.toString()
+            try {
 
-            numberStringBuilder.clear()
-            numberStringBuilder.append(expressionResult.toString())
+                val stringExpression = numberStringBuilder.toString()
+                val expression = Expression(stringExpression)
+                val expressionResult = expression.evaluate().numberValue
+
+                resultTextView.text = expressionResult.toString()
+
+                numberStringBuilder.clear()
+                numberStringBuilder.append(expressionResult.toString())
+            } catch (t: Throwable) {
+                Toast.makeText(this@MainActivity, "Exception: $t", Toast.LENGTH_LONG)
+                    .show()
+            }
         }
     }
 }
