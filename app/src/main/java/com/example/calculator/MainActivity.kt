@@ -96,5 +96,9 @@ class MainActivity : AppCompatActivity() {
             numberStringBuilder.append("*")
             resultTextView.text = numberStringBuilder
         }
+        pointButton.setOnClickListener {
+            numberStringBuilder.append(".")
+            resultTextView.text = numberStringBuilder
+        }
     }
 }
