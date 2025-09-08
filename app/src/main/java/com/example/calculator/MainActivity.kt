@@ -15,8 +15,9 @@ import com.ezylang.evalex.Expression
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private val numberStringBuilder = StringBuilder()
 
-    override fun onCreate(savedInstanceState: Bundle?) = with(binding) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
@@ -30,11 +31,9 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        setContentView(R.layout.activity_main)
-
-        val resultTextView = findViewById<TextView>(R.id.result_textView)
-        val numberStringBuilder = StringBuilder()
-
+        setListeners()
+    }
+    private fun setListeners() = with(binding) {
         oneNumber.setOnClickListener {
             numberStringBuilder.append(1)
             resultTextView.text = numberStringBuilder
@@ -43,7 +42,7 @@ class MainActivity : AppCompatActivity() {
             numberStringBuilder.append(2)
             resultTextView.text = numberStringBuilder
         }
-        binding.threeNumber.setOnClickListener {
+        threeNumber.setOnClickListener {
             numberStringBuilder.append(3)
             resultTextView.text = numberStringBuilder
         }
@@ -100,25 +99,28 @@ class MainActivity : AppCompatActivity() {
             numberStringBuilder.clear()
         }
         equalButton.setOnClickListener {
-
-            try {
-
-                val stringExpression = numberStringBuilder.toString()
-                val expression = Expression(stringExpression)
-                val expressionResult = expression.evaluate().numberValue
-
-                resultTextView.text = expressionResult.toString()
-
-                numberStringBuilder.clear()
-                numberStringBuilder.append(expressionResult.toString())
-            } catch (t: Throwable) {
-                Toast.makeText(this@MainActivity, "Exception: $t", Toast.LENGTH_LONG)
-                    .show()
-            }
+            calculate()
         }
         resetButton.setOnClickListener {
             numberStringBuilder.deleteCharAt(numberStringBuilder.length - 1)
             resultTextView.text = numberStringBuilder
+        }
+    }
+
+    private fun ActivityMainBinding.calculate() {
+        try {
+
+            val stringExpression = numberStringBuilder.toString()
+            val expression = Expression(stringExpression)
+            val expressionResult = expression.evaluate().numberValue
+
+            resultTextView.text = expressionResult.toString()
+
+            numberStringBuilder.clear()
+            numberStringBuilder.append(expressionResult.toString())
+        } catch (t: Throwable) {
+            Toast.makeText(this@MainActivity, "Exception: $t", Toast.LENGTH_LONG)
+                .show()
         }
     }
 }
