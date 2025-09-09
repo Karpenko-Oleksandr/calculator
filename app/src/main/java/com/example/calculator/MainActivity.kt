@@ -110,7 +110,9 @@ class MainActivity : AppCompatActivity() {
             resultTextView.text = numberStringBuilder
         }
         historyButton.setOnClickListener {
+            val h = historyList
             val intent = Intent(this@MainActivity, HistoryActivity::class.java)
+            intent.putExtra("history_list", historyList.toTypedArray())
             startActivity(intent)
         }
     }
