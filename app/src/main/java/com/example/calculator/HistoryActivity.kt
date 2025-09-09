@@ -2,10 +2,14 @@ package com.example.calculator
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.ArrayAdapter
+import android.widget.ListView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import android.view.View
+
 
 class HistoryActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,6 +23,11 @@ class HistoryActivity : AppCompatActivity() {
         }
 
         val historyList = intent.getStringArrayExtra("history_list") ?: arrayOf()
-        Log.d("HistoryActivity", "history_list ${historyList.size}")
+
+        val itemsAdapter: ArrayAdapter<String> = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, historyList)
+
+        val listView: ListView = findViewById<View>(R.id.history_listView) as ListView
+        listView.setAdapter(itemsAdapter)
+
     }
 }
